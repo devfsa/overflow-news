@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Overflow News</title>
+  </head>
+  <body>
+    <ul>
+      <% feeds.forEach(function(feed) { %>
+        <li><%= feed.title %></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
