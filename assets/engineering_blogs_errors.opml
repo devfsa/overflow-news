@@ -10,6 +10,7 @@
       <outline type="rss" text="Gnip" title="Gnip" xmlUrl="https://engineering.gnip.com/feed/" htmlUrl="https://engineering.gnip.com/"/>
       <outline type="rss" text="Hoteltonight" title="Hoteltonight" xmlUrl="http://engineering.hoteltonight.com/feed.xml" htmlUrl="http://engineering.hoteltonight.com/"/>
       <outline type="rss" text="500px" title="500px" xmlUrl="https://developers.500px.com/feed" htmlUrl="https://developers.500px.com/"/>
+      <outline type="rss" text="jlongster" title="jlongster" xmlUrl="https://jlongster.com/atom.xml" htmlUrl="https://jlongster.com/"/>
     </outline>
   </body>
 </opml>
