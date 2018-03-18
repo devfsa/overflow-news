@@ -4,7 +4,11 @@
   <% include ../partials/header %>
 </head>
   <body>
-    body
+    <ul>
+      <% posts.forEach(function(post) { %>
+        <li><%= post.title %></li>
+      <% }) %>
+    </ul>
   </body>
 
   <footer>
