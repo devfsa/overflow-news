@@ -10,7 +10,11 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     const Post = require('./models/post');
 
-    Post.find({}).limit(50).exec(function(error, data) {
+    Post.find({})
+    .limit(50)
+    .sort({'date': -1})
+    .exec(function(error, data) {
+        console.log(data);
         res.render('pages/index', {posts: data});
     });
 });

@@ -34,12 +34,12 @@ queue.on('succeeded', (task, result) => {
     const Post = require('./models/post');
     const posts = result.map(function (post) {
         return {
-            source: post.meta.title,
-            url: post.meta.link,
+            sourceName: post.meta.title,
+            sourceURL: post.meta.link,
             title: post.title,
             date: post.date,
             author: post.author,
-            rss: post.link,
+            url: post.link,
             categories: post.categories
         };
     });

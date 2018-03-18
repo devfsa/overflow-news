@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% include ../partials/header %>
+  <meta charset="utf-8">
+  <title>Overflow News</title>
 </head>
   <body>
     <ul>
       <% posts.forEach(function(post) { %>
-        <li><%= post.title %></li>
+      <li>
+        <a href="<%= post.url %>" target="_blank"><%= post.title %></a>
+      </li>
       <% }) %>
     </ul>
   </body>
-
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
 </html>
