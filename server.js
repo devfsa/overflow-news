@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
     .limit(30)
     .sort({'date': -1})
     .exec(function(error, data) {
-        res.render('pages/index', {posts: data});
+        res.render('index', {posts: data});
     });
 });
 
