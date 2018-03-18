@@ -1,6 +1,9 @@
 # Overflow News
 :books: Don't waste time searching for good dev blog posts. Get the latest news here.
 
+## Screenshot
+![First Version](assets/screenshot.png)
+
 ## Requirements
 * [MongoDB](https://www.mongodb.com/)
 * [Redis](https://redis.io/)
