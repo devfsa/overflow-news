@@ -3,14 +3,40 @@
 <head>
   <meta charset="utf-8">
   <title>Overflow News</title>
+  <style type="text/css">
+    .posts {
+      display: block;
+    }
+    .posts li {
+      margin-bottom: 20px;
+    }
+    .posts li a {
+      display: inline-block;
+    }
+  </style>
 </head>
   <body>
-    <ul>
+    <ol class="posts">
       <% posts.forEach(function(post) { %>
       <li>
-        <a href="<%= post.url %>" target="_blank"><%= post.title %></a>
+        <div class="header">
+          <a href="<%= post.url %>" target="_blank">
+            <%= post.title %>
+          </a>
+          <a href="<%= post.sourceURL %>">
+            (<%= post.sourceName %>)
+          </a>
+        </div>
+        <div class="date">
+          <%= post.date %>
+        </div>
+        <div class="categories">
+          <% post.categories.forEach(function(category) { %>
+          <span><%= category %></span>
+          <% }) %>
+        </div>
       </li>
       <% }) %>
-    </ul>
+    </ol>
   </body>
 </html>
