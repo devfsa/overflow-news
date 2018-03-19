@@ -1,0 +1,32 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev
+    tty: true
+    environment:
+      NODE_ENV: development
+      MONGO_URI: mongodb://mongo/database
+      REDIS_URI: redis
+      CRAWL_QUEUE: feeds-to-crawl
+      FEEDS_FILE: ./assets/engineering_blogs.opml
+      DEBUG: App*
+      PORT: 3001
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+     - .:/usr/src/app
+     - /usr/src/app/node_modules
+  redis:
+    image: redis:4-alpine
+    ports:
+      - 6379:6379
+  mongo:
+    image: mongo:3.4.10
+    ports:
+      - 27017:27017

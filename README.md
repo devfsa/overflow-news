@@ -20,6 +20,11 @@ cp .env.example .env
 $ npm install
 ```
 
+## Run with docker
+```
+$ docker-compose up --build
+```
+
 ## Run
 ```
 $ npm start
