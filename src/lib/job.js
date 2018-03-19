@@ -39,7 +39,11 @@ function fetchLatestPosts() {
             console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
         } else {
             const Queue = require('bee-queue');
-            const queue = new Queue(process.env.CRAWL_QUEUE);
+            const queue = new Queue(process.env.CRAWL_QUEUE, {
+                redis: {
+                    host: process.env.REDIS_URI
+                }
+            });
 
             feeds.forEach(function (feed) {
                 queue.createJob(feed).save();
