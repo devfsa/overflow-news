@@ -7,6 +7,7 @@ services:
     command: npm run start:dev
     tty: true
     environment:
+      NODE_ENV: development
       MONGO_URI: mongodb://mongo/database
       REDIS_URI: redis
       CRAWL_QUEUE: feeds-to-crawl
@@ -20,7 +21,7 @@ services:
       - redis
     volumes:
      - .:/usr/src/app
-     - /usr/src/app/node_modules/
+     - /usr/src/app/node_modules
   redis:
     image: redis:4-alpine
     ports:
