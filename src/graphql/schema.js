@@ -1,3 +1,7 @@
+const paginationMeta = `
+  total: Int
+`;
+
 export default `
 type Feed {
   id: ID!
@@ -18,8 +22,22 @@ type Post {
   categories: [String]
 }
 
+type FeedsMeta {
+  ${paginationMeta}
+}
+
+type PostsMeta {
+  ${paginationMeta}
+}
+
 type Query {
-  allFeeds: [Feed]
-  allPosts: [Post]
+  _allFeedsMeta: FeedsMeta
+  _allPostsMeta: PostsMeta
+
+  allFeeds(first: Int = 50, offset: Int = 0): [Feed]
+  allPosts(first: Int = 50, offset: Int = 0): [Post]
+
+  getFeed(id: ID): Feed!
+  getPost(id: ID): Post!
 }
 `

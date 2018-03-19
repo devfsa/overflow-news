@@ -1,16 +1,15 @@
 import { Router } from 'express'
-import { buildSchema } from 'graphql'
+import { makeExecutableSchema } from 'graphql-tools';
 import graphqlHTTP from 'express-graphql'
-import schema from './schema'
-import rootResolvers from './resolvers'
+import typeDefs from './schema'
+import resolvers from './resolvers'
 
 const router = new Router()
 
-const rootSchema = buildSchema(schema)
+const rootSchema = makeExecutableSchema({ typeDefs, resolvers })
 
 router.use('/graphql', graphqlHTTP({
   schema: rootSchema,
-  rootValue: rootResolvers,
   graphiql: true,
 }))
 
