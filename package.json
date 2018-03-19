@@ -2,12 +2,12 @@
   "name": "overflow-news",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "start:worker": "node app.js",
-    "start:server": "node server.js",
-    "start:dev_worker": "nodemon app.js --exec \"node -r dotenv/config -r babel-register\"",
-    "start:dev_server": "nodemon server.js --exec \"node -r dotenv/config -r babel-register\"",
+    "start:worker": "node ./src/worker.js",
+    "start:server": "node ./src/server.js",
+    "start:dev_worker": "nodemon ./src/worker.js --exec \"node -r dotenv/config -r babel-register\"",
+    "start:dev_server": "nodemon ./src/server.js --exec \"node -r dotenv/config -r babel-register\"",
     "start": "npm run start:worker"
   },
   "repository": {

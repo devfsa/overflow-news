@@ -1,12 +1,12 @@
-import './src/bootstrap'
-
+import './bootstrap'
+import path from 'path'
 const Queue = require('bee-queue');
 const CronJob = require('cron').CronJob;
 
 const rss = require('./lib/rss');
 const job = require('./lib/job');
 
-rss.load(process.env.FEEDS_FILE, function () {
+rss.load(path.join(__dirname, process.env.FEEDS_FILE), function () {
     const cron = new CronJob('00 59 * * * *', function() {
         job.fetchLatestPosts();
     }, null, true, 'America/Los_Angeles');

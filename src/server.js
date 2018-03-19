@@ -1,4 +1,4 @@
-import './src/bootstrap'
+import './bootstrap'
 import express from 'express'
 import dotenv from 'dotenv'
 import { Post, Feed } from './models'
