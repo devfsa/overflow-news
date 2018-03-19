@@ -26,7 +26,9 @@
     "dotenv": "^5.0.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "express-graphql": "^0.6.12",
     "feedparser": "^2.2.4",
+    "graphql": "^0.13.2",
     "mongoose": "^5.0.9",
     "request": "^2.83.0",
     "xml2js": "^0.4.19"
