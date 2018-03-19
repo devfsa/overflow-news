@@ -5,7 +5,9 @@ import { Post, Feed } from './models'
 
 const app = express();
 
-dotenv.config();
+require('dotenv').config();
+
+const { PORT = 8080 } = process.env;
 
 mongoose.connect(process.env.MONGO_URI);
 
@@ -25,4 +27,4 @@ app.get('/feeds', async (req, res) => {
     res.render('feeds', { feeds });
 });
 
-app.listen(8080);
+app.listen(PORT);

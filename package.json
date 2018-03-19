@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon server.js --exec \"node -r dotenv/config -r babel-register\"",
+    "start:dev": "nodemon server.js --exec \"node -r dotenv/config -r babel-register\"",
     "start": "node app.js"
   },
   "repository": {

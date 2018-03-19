@@ -16,7 +16,11 @@ rss.load(process.env.FEEDS_FILE, function () {
     cron.start();
 });
 
-const queue = new Queue(process.env.CRAWL_QUEUE);
+const queue = new Queue(process.env.CRAWL_QUEUE, {
+    redis: {
+        host: process.env.REDIS_URI
+    }
+});
 
 queue.process(5, function (task, done) {
     const job = require('./lib/job');
