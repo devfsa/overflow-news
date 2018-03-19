@@ -1,21 +1,28 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express'
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+import { Post, Feed } from './models'
+
 const app = express();
 
-require('dotenv').config();
+dotenv.config();
+
 mongoose.connect(process.env.MONGO_URI);
 
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res) {
-    const Post = require('./models/post');
+app.get('/', async (req, res) => {
+    const posts = await Post.find({})
+        .limit(30)
+        .sort({'date': -1})
+    res.render('index', { posts });
+});
 
-    Post.find({})
-    .limit(30)
-    .sort({'date': -1})
-    .exec(function(error, data) {
-        res.render('index', {posts: data});
-    });
+app.get('/feeds', async (req, res) => {
+    const feeds = await Feed.find({})
+        .limit(50)
+        .sort({'date': -1})
+    res.render('feeds', { feeds });
 });
 
 app.listen(8080);
