@@ -1,12 +1,13 @@
 import './bootstrap'
 import express from 'express'
+import path from 'path'
 import dotenv from 'dotenv'
 import { Post, Feed } from './models'
 
 const app = express();
 
 const { PORT = 8080 } = process.env;
-
+app.set('views', path.join(__dirname, './views'))
 app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
