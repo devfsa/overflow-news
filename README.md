@@ -25,9 +25,14 @@ $ npm install
 $ docker-compose up --build
 ```
 
-## Run
+## Run locally
 ```
 $ npm start
+```
+
+## Open the browser
+```
+http://localhost:3001
 ```
 
 ## Roadmap [v1.0.0]
