@@ -38,6 +38,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
     "nodemon": "^1.17.2",
     "npm-run-all": "^4.1.2"
   }
