@@ -1,15 +1,11 @@
+import './src/bootstrap'
 import express from 'express'
-import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import { Post, Feed } from './models'
 
 const app = express();
 
-require('dotenv').config();
-
 const { PORT = 8080 } = process.env;
-
-mongoose.connect(process.env.MONGO_URI);
 
 app.set('view engine', 'ejs');
 

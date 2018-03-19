@@ -1,12 +1,10 @@
+import './src/bootstrap'
+
 const Queue = require('bee-queue');
-const mongoose = require('mongoose');
 const CronJob = require('cron').CronJob;
 
 const rss = require('./lib/rss');
 const job = require('./lib/job');
-
-require('dotenv').config();
-mongoose.connect(process.env.MONGO_URI);
 
 rss.load(process.env.FEEDS_FILE, function () {
     const cron = new CronJob('00 59 * * * *', function() {

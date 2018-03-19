@@ -1,5 +1,9 @@
 version: '2'
 services:
+  redis:
+    image: redis:4-alpine
+  mongo:
+    image: mongo:3.4.10
   server:
     build:
       context: .
@@ -36,11 +40,3 @@ services:
     volumes:
      - .:/usr/src/app
      - /usr/src/app/node_modules
-  redis:
-    image: redis:4-alpine
-    ports:
-      - 6379:6379
-  mongo:
-    image: mongo:3.4.10
-    ports:
-      - 27017:27017
