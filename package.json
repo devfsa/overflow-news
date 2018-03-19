@@ -8,7 +8,6 @@
     "start:server": "node server.js",
     "start:dev_worker": "nodemon app.js --exec \"node -r dotenv/config -r babel-register\"",
     "start:dev_server": "nodemon server.js --exec \"node -r dotenv/config -r babel-register\"",
-    "start:dev": "npm-run-all start:dev_worker start:dev_server",
     "start": "npm run start:worker"
   },
   "repository": {

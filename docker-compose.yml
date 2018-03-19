@@ -4,18 +4,32 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: npm run start:dev
+    command: npm run start:dev_server
+    environment:
+      NODE_ENV: development
+      MONGO_URI: mongodb://mongo/database
+      REDIS_URI: redis
+      DEBUG: App*
+      PORT: 3001
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongo
+      - redis
+    volumes:
+     - .:/usr/src/app
+     - /usr/src/app/node_modules
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run start:dev_worker
     tty: true
     environment:
       NODE_ENV: development
       MONGO_URI: mongodb://mongo/database
       REDIS_URI: redis
-      CRAWL_QUEUE: feeds-to-crawl
-      FEEDS_FILE: ./assets/engineering_blogs.opml
       DEBUG: App*
-      PORT: 3001
-    ports:
-      - 3001:3001
     depends_on:
       - mongo
       - redis
