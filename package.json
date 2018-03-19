@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon ./src",
-    "start": "node app.js"
+    "start:worker": "node app.js",
+    "start:server": "node server.js", 
+    "start:dev_worker": "nodemon server.js",
+    "start:dev_server": "nodemon server.js",
+    "start:dev": "npm-run-all start:dev_worker start:dev_server",
+    "start": "npm run start:worker"
   },
   "repository": {
     "type": "git",
@@ -29,6 +33,7 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "npm-run-all": "^4.1.2"
   }
 }
