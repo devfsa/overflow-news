@@ -32,7 +32,7 @@ $ npm start
 
 ## Open the browser
 ```
-http://localhost:3001
+http://localhost:8080
 ```
 
 ## Roadmap [v1.0.0]

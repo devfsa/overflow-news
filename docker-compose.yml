@@ -14,9 +14,9 @@ services:
       MONGO_URI: mongodb://mongo/database
       REDIS_URI: redis
       DEBUG: App*
-      PORT: 3001
+      PORT: 8080
     ports:
-      - 3001:3001
+      - 8080:8080
     depends_on:
       - mongo
       - redis
