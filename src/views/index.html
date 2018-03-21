@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<div>
+  <strong>Posts</strong> -
+  <a href="/feeds">Feeds</a>
+</div>
+<ol class="posts">
+  {% for post in posts %}
+  <li>
+    <div class="header">
+      <a href="{{ post.url }}" target="_blank">
+        {{ post.title }}
+      </a>
+      <a href="{{ post.sourceURL }}">
+        ( {{ post.sourceName }})
+      </a>
+    </div>
+    <div class="date">
+      {{ post.date }}
+    </div>
+    <div class="categories">
+      {% for category in post.categories %}
+      <span>
+        {{ category }}
+      </span>
+      {% endfor %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}
