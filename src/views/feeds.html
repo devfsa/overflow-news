@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Feeds{% endblock %} {% block content %}
-<div>
-  <a href="/">Posts</a> -
-  <strong>Feeds</strong>
+<div class="menu">
+  <a class="menu--item" href="/">Posts</a>
+  <span class="menu--item menu--item__active">Feeds</span>
 </div>
 <ol class="feeds">
   {% for feed in feeds %}

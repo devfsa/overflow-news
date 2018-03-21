@@ -2,9 +2,9 @@
 {% block title %}Posts{% endblock %}
 
 {% block content %}
-<div>
-  <strong>Posts</strong> -
-  <a href="/feeds">Feeds</a>
+<div class="menu">
+  <span class="menu--item menu--item__active">Posts</span>
+  <a class="menu--item" href="/feeds">Feeds</a>
 </div>
 <ol class="posts">
   {% for post in posts %}

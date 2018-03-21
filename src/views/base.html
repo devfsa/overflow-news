@@ -7,23 +7,42 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/hack.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/dark.css">
   <style type="text/css">
-    .posts {
-      display: block;
+    #logo {
+      text-align: center;
+      line-height: 1;
+      color: #4caf50;
+      padding: 50px 0;
     }
-
-    .posts li {
-      margin-bottom: 20px;
+    .menu {
+      text-align: center;
     }
-
-    .posts li a {
-      display: inline-block;
+    .menu--item {
+      padding: 10px;
+      display: inline-flex;
+      margin: 0 5px 30px;
+    }
+    .menu--item__active {
+      background: rgba(255, 255, 255, 0.15);
+      font-weight: bold;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.50);
     }
   </style>
   {% endblock %}
 </head>
 
 <body class="hack dark">
-  <div id="content">{% block content %}{% endblock %}</div>
+  <div class="container">
+    <div id="logo">
+      <div>&nbsp;██████╗&nbsp;██╗&nbsp;&nbsp;&nbsp;██╗███████╗██████╗&nbsp;███████╗██╗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██████╗&nbsp;██╗&nbsp;&nbsp;&nbsp;&nbsp;██╗&nbsp;&nbsp;&nbsp;███╗&nbsp;&nbsp;&nbsp;██╗███████╗██╗&nbsp;&nbsp;&nbsp;&nbsp;██╗███████╗</div>
+      <div>██╔═══██╗██║&nbsp;&nbsp;&nbsp;██║██╔════╝██╔══██╗██╔════╝██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██╔═══██╗██║&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;████╗&nbsp;&nbsp;██║██╔════╝██║&nbsp;&nbsp;&nbsp;&nbsp;██║██╔════╝</div>
+      <div>██║&nbsp;&nbsp;&nbsp;██║██║&nbsp;&nbsp;&nbsp;██║█████╗&nbsp;&nbsp;██████╔╝█████╗&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║██║&nbsp;█╗&nbsp;██║&nbsp;&nbsp;&nbsp;██╔██╗&nbsp;██║█████╗&nbsp;&nbsp;██║&nbsp;█╗&nbsp;██║███████╗</div>
+      <div>██║&nbsp;&nbsp;&nbsp;██║╚██╗&nbsp;██╔╝██╔══╝&nbsp;&nbsp;██╔══██╗██╔══╝&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;██║&nbsp;&nbsp;&nbsp;██║██║███╗██║&nbsp;&nbsp;&nbsp;██║╚██╗██║██╔══╝&nbsp;&nbsp;██║███╗██║╚════██║</div>
+      <div>╚██████╔╝&nbsp;╚████╔╝&nbsp;███████╗██║&nbsp;&nbsp;██║██║&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;███████╗╚██████╔╝╚███╔███╔╝██╗██║&nbsp;╚████║███████╗╚███╔███╔╝███████║</div>
+      <div>&nbsp;╚═════╝&nbsp;&nbsp;&nbsp;╚═══╝&nbsp;&nbsp;╚══════╝╚═╝&nbsp;&nbsp;╚═╝╚═╝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;╚══════╝&nbsp;╚═════╝&nbsp;&nbsp;╚══╝╚══╝&nbsp;╚═╝╚═╝&nbsp;&nbsp;╚═══╝╚══════╝&nbsp;╚══╝╚══╝&nbsp;╚══════╝</div>
+      <!-- http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Overflow.News -->
+    </div>
+  </div>
+  <div class="container" id="content">{% block content %}{% endblock %}</div>
 </body>
 
 </html>
