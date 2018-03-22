@@ -36,8 +36,8 @@ http://localhost:8080
 ```
 
 ## Roadmap [v1.0.0]
-- [ ] Features
-  - [ ] Ability to list all the blog posts of today
+- [x] Features
+  - [x] Ability to list all the blog posts of today
   - [ ] Ability to vote a blog post as relevant
   - [ ] Ability to rank all the relevant blog posts of today
   - [ ] Ability to upload a RSS File to insert more relevant blogs
