@@ -2,44 +2,84 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Overflow News</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Overflow News - Get latest news from dev world</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack/0.8.1/hack.css">
   <style type="text/css">
-    .posts {
-      display: block;
+    .navbar div:nth-child(2) {
+      text-align: right;
+    }
+    .navbar,
+    .navbar h1 {
+      font-size: 14px;
+    }
+    ol {
+      font-size: 14px;
     }
     .posts li {
       margin-bottom: 20px;
+      line-height: 20px;
     }
-    .posts li a {
-      display: inline-block;
+    .posts li .title {
+      font-size: 14px;
+    }
+    .posts li .about a {
+      color: #00bcd4;
+      border-bottom: 0px;
+    }
+    .posts li .about a:hover {
+      color: #ffffff;
+      background-color: #00bcd4;
     }
   </style>
 </head>
-  <body>
-    <div>
-      <strong>Overflow News</strong>
+<body class="hack container">
+  <div class="grid -middle navbar">
+    <div class="cell -8of12">
+      <h1>Overflow News - Get latest news from dev world</h1>
     </div>
+    <div class="cell -4of12">
+      <a href="https://github.com/di3goleite/overflow-news" target="_blank">GitHub</a>
+      <a href="https://twitter.com/di3goleite" target="_blank">Twitter</a>
+    </div>
+  </div>
+  <div class="content">
     <ol class="posts">
       <% posts.forEach(function(post) { %>
       <li>
-        <div class="header">
+        <div class="title">
           <a href="<%= post.url %>" target="_blank">
             <%= post.title %>
           </a>
-          <a href="<%= post.sourceURL %>">
-            (<%= post.sourceName %>)
-          </a>
         </div>
-        <div class="date">
-          <%= post.date %>
+        <div class="about">
+          <span>By </span>
+          <a href="<%= post.sourceURL %>" target="_blank">
+            <%= post.sourceName %>
+          </a>
+          <span><%= moment(post.date).fromNow() %></span>
         </div>
         <div class="categories">
-          <% post.categories.forEach(function(category) { %>
-          <span><%= category %></span>
-          <% }) %>
+          <span>Categories: </span>
+          <% if (post.categories.length == 0) { %>
+            <span>Uncategorized.</span>
+          <% } else { %>
+            <% post.categories.forEach(function(category, index) { %>
+              <span>
+                <% if (post.categories.length > 1 && index !== post.categories.length-1) { %>
+                  <%= category %>,
+                <% } else { %>
+                  <%= category %>.
+                <% } %>
+              </span>
+            <% }) %>
+          <% } %>
         </div>
       </li>
       <% }) %>
     </ol>
-  </body>
+  </div>
+</body>
 </html>

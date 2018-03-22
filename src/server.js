@@ -4,14 +4,16 @@ import path from 'path'
 import dotenv from 'dotenv'
 import { Post, Feed } from './models'
 import graphqlRouter from './graphql'
+import moment from 'moment';
 
 const app = express();
-
 const { PORT = 8080 } = process.env;
+
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 app.set('cache', false);
 
+app.locals.moment = moment;
 app.use(graphqlRouter);
 
 app.get('/', async (req, res) => {

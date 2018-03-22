@@ -36,6 +36,7 @@
     "feedparser": "^2.2.4",
     "graphql": "^0.13.2",
     "graphql-tools": "^2.23.1",
+    "moment": "^2.21.0",
     "mongoose": "^5.0.9",
     "request": "^2.83.0",
     "xml2js": "^0.4.19"
