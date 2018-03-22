@@ -7,11 +7,11 @@ const rss = require('./lib/rss');
 const job = require('./lib/job');
 
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function () {
-    const cron = new CronJob('00 59 * * * *', function() {
+    // const cron = new CronJob('00 59 * * * *', function() {
         job.fetchLatestPosts();
-    }, null, true, 'America/Los_Angeles');
+    // }, null, true, 'America/Los_Angeles');
 
-    cron.start();
+    // cron.start();
 });
 
 const queue = new Queue(process.env.CRAWL_QUEUE, {
