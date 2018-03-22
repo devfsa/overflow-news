@@ -36,6 +36,34 @@
     .footer {
       margin-bottom: 20px;
     }
+    .pagination,
+    .pagination li {
+      outline: none;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .pagination {
+      text-align: center;
+      max-width: 720px;/* limited by <hr />*/
+    }
+    ul.pagination > li:after {
+      content: none;
+    }
+    .pagination li {
+      display: inline-block;
+    }
+  <% if (currentPage > 1) { %>
+    ol.posts[start="<%= (perPage * (currentPage - 1)) + 1 %>"] {
+      counter-reset: a <%= (perPage * (currentPage - 1)) %>;
+    }
+    .posts li {
+      padding-left: <%= Math.ceil(((perPage * (currentPage - 1)) + perPage + 1) / 100) * 8 + 20 %>px
+    }
+    .posts li:after {
+      left: 0 !important;
+    }
+  <% } %>
   </style>
 </head>
 <body class="hack container">
@@ -48,7 +76,7 @@
     </div>
   </div>
   <div class="content">
-    <ol class="posts">
+    <ol class="posts" start="<%= (perPage * (currentPage - 1)) + 1 %>">
       <% posts.forEach(function(post) { %>
       <li>
         <div class="title">
@@ -83,6 +111,35 @@
       <% }) %>
     </ol>
   </div>
+
+  <% if (pages > 0) { %>
+    <ul class="pagination text-center">
+        <% if (currentPage == 1) { %>
+            <li class="disabled"><span>First</span></li>
+        <% } else { %>
+            <li><a href="/posts/1">First</a></li>
+        <% } %>
+        <% var i = (Number(currentPage) > 4 ? Number(currentPage) - 3 : 1) %>
+        <% if (i !== 1) { %>
+            <li class="disabled"><a>...</a></li>
+        <% } %>
+        <% for (; i <= (Number(currentPage) + 3) && i <= pages; i++) { %>
+            <% if (i == currentPage) { %>
+                <li class="active"><span><%= i %></span></li>
+            <% } else { %>
+                <li><a href="/posts/<%= i %>"><%= i %></a></li>
+            <% } %>
+            <% if (i == Number(currentPage) + 3 && i < pages) { %>
+                <li class="disabled"><span>...</span></li>
+            <% } %>
+        <% } %>
+        <% if (currentPage == pages) { %>
+            <li class="disabled"><span>Last</span></li>
+        <% } else { %>
+            <li><a href="/posts/<%= pages %>">Last</a></li>
+        <% } %>
+    </ul>
+  <% } %>
 
   <hr>
 
