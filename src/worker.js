@@ -1,5 +1,5 @@
-import './bootstrap'
-import path from 'path'
+import './bootstrap';
+import path from 'path';
 const Queue = require('bee-queue');
 const CronJob = require('cron').CronJob;
 

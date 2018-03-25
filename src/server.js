@@ -1,9 +1,9 @@
-import './bootstrap'
-import express from 'express'
-import path from 'path'
-import dotenv from 'dotenv'
-import { Post, Feed } from './models'
-import graphqlRouter from './graphql'
+import './bootstrap';
+import express from 'express';
+import path from 'path';
+import dotenv from 'dotenv';
+import { Post, Feed } from './models';
+import graphqlRouter from './graphql';
 import moment from 'moment';
 
 const app = express();
@@ -24,9 +24,9 @@ app.get('/feeds', async (req, res) => {
 });
 
 const listPosts = async (req, res) => {
-    const perPage = 30
-    const { page = 1 } = req.params
-    const offset = (perPage * page) - perPage
+    const perPage = 30;
+    const { page = 1 } = req.params;
+    const offset = (perPage * page) - perPage;
 
     const [ posts, count] = await Promise.all([
         Post.find({})
@@ -34,10 +34,10 @@ const listPosts = async (req, res) => {
             .limit(perPage)
             .sort({ 'date': -1 }),
         Post.count({})
-    ])
+    ]);
 
-    const pages = Math.ceil(count / perPage)
-    
+    const pages = Math.ceil(count / perPage);
+
     res.render('index', { posts, count, perPage, pages, currentPage: page });
 }
 
