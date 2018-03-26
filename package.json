@@ -4,18 +4,20 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "start:worker": "node ./dist/worker.js",
-    "start:server": "node ./dist/server.js",
-    "copy:statics": "cp ./src/views ./dist/views -Rf && cp ./src/assets ./dist/assets -Rf",
     "babel": "babel-node ./src",
     "babel-with-debug": "DEBUG=App* babel-node ./src",
-    "clean": "rm -rf ./dist",
     "build": "rm -rf ./build && npm run clean && npm run build:server && npm run copy:statics",
     "build:server": "babel src -d ./dist",
+    "clean": "rm -rf ./dist",
+    "copy:statics": "cp ./src/views ./dist/views -Rf && cp ./src/assets ./dist/assets -Rf",
+    "lint": "eslint src/",
+    "start:worker": "node ./dist/worker.js",
+    "start:server": "node ./dist/server.js",
     "start:dev_worker": "nodemon ./src/worker.js --exec \"node -r dotenv/config -r babel-register\"",
     "start:dev_server": "nodemon ./src/server.js --exec \"node -r dotenv/config -r babel-register\"",
     "start": "npm run start:worker",
-    "lint": "eslint src/"
+    "test:strict": "echo 'No tests found :('",
+    "test": "npm run lint && npm run test:strict"
   },
   "repository": {
     "type": "git",
