@@ -1,7 +1,6 @@
 import './bootstrap';
 import express from 'express';
 import path from 'path';
-import dotenv from 'dotenv';
 import { Post, Feed } from './models';
 import graphqlRouter from './graphql';
 import moment from 'moment';

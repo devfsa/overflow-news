@@ -10,7 +10,7 @@ function crawlFeed(URL, callback) {
             console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
             callback(error);
         })
-        .on('response', function (response) {
+        .on('response', function () {
             this.pipe(feedparser);
 
             feedparser.on('error', function (error) {
@@ -18,9 +18,7 @@ function crawlFeed(URL, callback) {
             });
 
             feedparser.on('readable', function () {
-                let post = null;
-
-                while (post = this.read()) {
+                for (let post=this.read(); post; post=this.read()) {
                     posts.push(post);
                 }
             });

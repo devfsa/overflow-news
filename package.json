@@ -14,7 +14,8 @@
     "build:server": "babel src -d ./dist",
     "start:dev_worker": "nodemon ./src/worker.js --exec \"node -r dotenv/config -r babel-register\"",
     "start:dev_server": "nodemon ./src/server.js --exec \"node -r dotenv/config -r babel-register\"",
-    "start": "npm run start:worker"
+    "start": "npm run start:worker",
+    "lint": "eslint src/"
   },
   "repository": {
     "type": "git",
@@ -43,11 +44,13 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.2",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "eslint": "^4.19.1",
     "nodemon": "^1.17.2",
     "npm-run-all": "^4.1.2"
   }
