@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:carbon-alpine
 
 WORKDIR /usr/src/app
 COPY package.json .
