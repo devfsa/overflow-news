@@ -31,6 +31,7 @@
   "homepage": "https://overflow.news",
   "dependencies": {
     "bee-queue": "^1.2.2",
+    "cors": "^2.8.4",
     "cron": "^1.3.0",
     "dotenv": "^5.0.1",
     "ejs": "^2.5.7",

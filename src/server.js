@@ -1,6 +1,7 @@
 import './bootstrap';
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import { Post, Feed } from './models';
 import graphqlRouter from './graphql';
 import moment from 'moment';
@@ -13,6 +14,7 @@ app.set('view engine', 'ejs');
 app.set('cache', false);
 
 app.locals.moment = moment;
+app.use(cors());
 app.use(graphqlRouter);
 
 app.get('/feeds', async (req, res) => {
