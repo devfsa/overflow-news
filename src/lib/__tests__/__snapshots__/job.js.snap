@@ -12,3 +12,20 @@ Array [
   ],
 ]
 `;
+
+exports[`crawlFeed assert response handler 1`] = `
+Array [
+  Array [
+    "error",
+    [Function],
+  ],
+  Array [
+    "readable",
+    [Function],
+  ],
+  Array [
+    "end",
+    [Function],
+  ],
+]
+`;
