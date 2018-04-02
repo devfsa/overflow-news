@@ -6,6 +6,10 @@ const CronJob = require('cron').CronJob;
 const rss = require('./lib/rss');
 const job = require('./lib/job');
 
+console.log('--------------------------------------->');
+console.log(process.env.FEEDS_FILE);
+console.log('>---------------------------------------');
+
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function () {
     const cron = new CronJob('00 59 * * * *', function() {
         job.fetchLatestPosts();
