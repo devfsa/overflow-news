@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`crawlFeed assert request calls 1`] = `
+Array [
+  Array [
+    "error",
+    [Function],
+  ],
+  Array [
+    "response",
+    [Function],
+  ],
+]
+`;
