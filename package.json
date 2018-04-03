@@ -16,7 +16,7 @@
     "start:dev_worker": "nodemon ./src/worker.js --exec \"node -r dotenv/config -r babel-register\"",
     "start:dev_server": "nodemon ./src/server.js --exec \"node -r dotenv/config -r babel-register\"",
     "start": "npm run start:worker",
-    "test:strict": "echo 'No tests found :('",
+    "test:strict": "jest",
     "test": "npm run lint && npm run test:strict"
   },
   "repository": {
@@ -29,6 +29,12 @@
     "url": "https://github.com/di3goleite/overflow-news/issues"
   },
   "homepage": "https://overflow.news",
+  "jest": {
+    "transform": {
+      "\\.js?$": "babel-jest"
+    },
+    "clearMocks": true
+  },
   "dependencies": {
     "bee-queue": "^1.2.2",
     "cors": "^2.8.4",
@@ -48,12 +54,14 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "eslint": "^4.19.1",
+    "jest": "^22.4.3",
     "nodemon": "^1.17.2",
     "npm-run-all": "^4.1.2"
   }
