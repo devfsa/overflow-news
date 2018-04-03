@@ -1,35 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`crawlFeed assert request calls 1`] = `
-Array [
-  Array [
-    "error",
-    [Function],
-  ],
-  Array [
-    "response",
-    [Function],
-  ],
-]
-`;
-
-exports[`crawlFeed assert response handler 1`] = `
-Array [
-  Array [
-    "error",
-    [Function],
-  ],
-  Array [
-    "readable",
-    [Function],
-  ],
-  Array [
-    "end",
-    [Function],
-  ],
-]
-`;
-
 exports[`crawlFeed request calls 1`] = `
 Array [
   Array [

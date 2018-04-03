@@ -1,14 +1,15 @@
 /* eslint-env jest, browser */
 
-// mocking
-jest.mock('request');
-jest.mock('feedparser');
-import requestMock from 'request';
-import fpMock from 'feedparser';
-
 import { crawlFeed } from '../job'
 
 describe('crawlFeed', () => {
+  // mocking
+  jest.mock('request');
+  jest.mock('feedparser');
+
+  const requestMock = require('request');
+  const fpMock = require('feedparser');
+
   beforeEach(() => {
     fpMock.mockClear();
   });
