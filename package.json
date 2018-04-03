@@ -35,7 +35,8 @@
       "\\.js?$": "babel-jest"
     },
     "clearMocks": true,
-    "collectCoverage": true
+    "collectCoverage": true,
+    "collectCoverageFrom": ["<rootDir>/src/lib/*"]
   },
   "dependencies": {
     "bee-queue": "^1.2.2",
