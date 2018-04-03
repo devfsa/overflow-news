@@ -9,6 +9,7 @@
     "build": "rm -rf ./build && npm run clean && npm run build:server && npm run copy:statics",
     "build:server": "babel src -d ./dist",
     "clean": "rm -rf ./dist",
+    "coverage": "coveralls < coverage/lcov.info",
     "copy:statics": "cp ./src/views ./dist/views -Rf && cp ./src/assets ./dist/assets -Rf",
     "lint": "eslint src/",
     "start:worker": "node ./dist/worker.js",
@@ -17,7 +18,7 @@
     "start:dev_server": "nodemon ./src/server.js --exec \"node -r dotenv/config -r babel-register\"",
     "start": "npm run start:worker",
     "test:strict": "jest",
-    "test": "npm run lint && npm run test:strict"
+    "test": "npm run lint && npm run test:strict && npm run coverage"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,8 @@
     "transform": {
       "\\.js?$": "babel-jest"
     },
-    "clearMocks": true
+    "clearMocks": true,
+    "collectCoverage": true
   },
   "dependencies": {
     "bee-queue": "^1.2.2",
@@ -60,6 +62,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
     "jest": "^22.4.3",
     "nodemon": "^1.17.2",
