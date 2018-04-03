@@ -102,7 +102,6 @@ describe('crawlFeed', () => {
     const reqHandler = req.on.mock.calls.filter(call => call[0] === 'response')[0][1];
     reqHandler.bind(req)();
 
-    const forcedError = new Error('forcing');
     const [fpReadable, fpEnd] = fp.on.mock.calls
         .filter(call => call[0] !== 'error')
         .map(params => params[1]);
