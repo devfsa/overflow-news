@@ -1,4 +1,4 @@
-[![wercker status](https://app.wercker.com/status/7abb18ad3bd562265fdde6cd5edfc93b/m/master "wercker status")](https://app.wercker.com/project/byKey/7abb18ad3bd562265fdde6cd5edfc93b)
+[![wercker status](https://app.wercker.com/status/75e452018a5c4de409be0b20c72de16a/s/master "wercker status")](https://app.wercker.com/project/byKey/75e452018a5c4de409be0b20c72de16a)
 
 # Overflow News
 :books: Don't waste time searching for good dev blog posts. Get the latest news here.
