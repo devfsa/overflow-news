@@ -34,6 +34,7 @@ services:
       MONGO_URI: mongodb://mongo/database
       REDIS_URI: redis
       DEBUG: App*
+      FEEDS_FILE: ./assets/engineering_blogs.opml
     depends_on:
       - mongo
       - redis
