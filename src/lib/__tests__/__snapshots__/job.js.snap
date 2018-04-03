@@ -29,3 +29,33 @@ Array [
   ],
 ]
 `;
+
+exports[`crawlFeed request calls 1`] = `
+Array [
+  Array [
+    "error",
+    [Function],
+  ],
+  Array [
+    "response",
+    [Function],
+  ],
+]
+`;
+
+exports[`crawlFeed request response handler 1`] = `
+Array [
+  Array [
+    "error",
+    [Function],
+  ],
+  Array [
+    "readable",
+    [Function],
+  ],
+  Array [
+    "end",
+    [Function],
+  ],
+]
+`;

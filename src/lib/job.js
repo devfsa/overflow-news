@@ -15,6 +15,7 @@ function crawlFeed(URL, callback) {
 
             feedparser.on('error', function (error) {
                 console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
+                callback(error);
             });
 
             feedparser.on('readable', function () {
