@@ -1,6 +1,6 @@
 /* eslint-env jest, browser */
 
-import { crawlFeed } from '../job'
+import { crawlFeed, fetchLatestPosts } from '../job'
 
 describe('crawlFeed', () => {
   // mocking
@@ -116,5 +116,53 @@ describe('crawlFeed', () => {
 
     expect(callback).toHaveBeenCalledTimes(1);
     expect(callback).toHaveBeenCalledWith(null, [post]);
+  });
+});
+
+
+describe('fetchLatestPosts', () => {
+  // mocking
+  jest.mock('../../models/feed', () => ({ find: jest.fn() }));
+  jest.mock('bee-queue');
+  const feedFind = require('../../models/feed').find;
+  const queueMock = require('bee-queue');
+
+  beforeEach(() => {
+    queueMock.mockClear();
+    fetchLatestPosts();
+  });
+  afterEach(() => {
+    feedFind.mockReset();
+  });
+
+  it('Feed.find call', () => {
+    expect(feedFind.mock.calls).toMatchSnapshot();
+  });
+
+  it('Feed.find handler for error', () => {
+    const findHandler = feedFind.mock.calls[0][1];
+    const forcedError = new Error('forced');
+
+    findHandler(forcedError);
+    expect(queueMock).not.toHaveBeenCalled();
+  });
+
+  it('Feed.find handler for sucess', () => {
+    const findHandler = feedFind.mock.calls[0][1];
+    const bQueue = { createJob: jest.fn(), save: jest.fn() };
+    bQueue.createJob.mockReturnThis();
+    queueMock.mockImplementation(() => bQueue);
+
+    // array with random length (1~10) filled with random numbers
+    const feeds = Array(Math.round(Math.random()*10)).fill().map(Math.random);
+    findHandler(undefined, feeds);
+
+    expect(queueMock).toHaveBeenCalledTimes(1);
+    expect(queueMock.mock.calls).toMatchSnapshot('queue constructor');
+
+    expect(bQueue.createJob).toHaveBeenCalledTimes(feeds.length);
+    feeds.forEach(feed => expect(bQueue.createJob).toHaveBeenCalledWith(feed));
+    expect(bQueue.save).toHaveBeenCalledTimes(feeds.length);
+    expect(bQueue.save).toHaveBeenCalledWith();
   });
 });

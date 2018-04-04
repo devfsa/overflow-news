@@ -29,3 +29,25 @@ Array [
   ],
 ]
 `;
+
+exports[`fetchLatestPosts Feed.find call 1`] = `
+Array [
+  Array [
+    Object {},
+    [Function],
+  ],
+]
+`;
+
+exports[`fetchLatestPosts Feed.find handler for sucess: queue constructor 1`] = `
+Array [
+  Array [
+    undefined,
+    Object {
+      "redis": Object {
+        "host": undefined,
+      },
+    },
+  ],
+]
+`;
