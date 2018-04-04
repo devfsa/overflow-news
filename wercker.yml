@@ -4,3 +4,7 @@ build:
   steps:
     - npm-install
     - npm-test
+    - script:
+        name: coverage store
+        code: |
+          npm run coveralls

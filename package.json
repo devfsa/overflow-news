@@ -9,7 +9,8 @@
     "build": "rm -rf ./build && npm run clean && npm run build:server && npm run copy:statics",
     "build:server": "babel src -d ./dist",
     "clean": "rm -rf ./dist",
-    "coverage": "coveralls < coverage/lcov.info",
+    "coverage:all": "jest -c=.coverage-jest.json --silent",
+    "coveralls": "npm run coverage:all && coveralls < coverage/lcov.info",
     "copy:statics": "cp ./src/views ./dist/views -Rf && cp ./src/assets ./dist/assets -Rf",
     "lint": "eslint src/",
     "start:worker": "node ./dist/worker.js",
@@ -18,7 +19,7 @@
     "start:dev_server": "nodemon ./src/server.js --exec \"node -r dotenv/config -r babel-register\"",
     "start": "npm run start:worker",
     "test:strict": "jest",
-    "test": "npm run lint && npm run test:strict && npm run coverage"
+    "test": "npm run lint && npm run test:strict"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,16 @@
       "\\.js?$": "babel-jest"
     },
     "clearMocks": true,
-    "collectCoverage": true
+    "collectCoverage": true,
+    "coverageReporters": ["text", "lcov"],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
   },
   "dependencies": {
     "bee-queue": "^1.2.2",
