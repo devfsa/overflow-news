@@ -1,0 +1,9 @@
+{
+  "transform": {
+    "\\.js?$": "babel-jest"
+  },
+  "clearMocks": true,
+  "collectCoverage": true,
+  "collectCoverageFrom": ["<rootDir>/src/**/*.js"],
+  "coverageReporters": ["lcov"]
+}

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`crawlFeed assert request calls 1`] = `
+exports[`crawlFeed request calls 1`] = `
 Array [
   Array [
     "error",
@@ -13,7 +13,7 @@ Array [
 ]
 `;
 
-exports[`crawlFeed assert response handler 1`] = `
+exports[`crawlFeed request response handler 1`] = `
 Array [
   Array [
     "error",
@@ -26,6 +26,28 @@ Array [
   Array [
     "end",
     [Function],
+  ],
+]
+`;
+
+exports[`fetchLatestPosts Feed.find call 1`] = `
+Array [
+  Array [
+    Object {},
+    [Function],
+  ],
+]
+`;
+
+exports[`fetchLatestPosts Feed.find handler for sucess: queue constructor 1`] = `
+Array [
+  Array [
+    undefined,
+    Object {
+      "redis": Object {
+        "host": undefined,
+      },
+    },
   ],
 ]
 `;

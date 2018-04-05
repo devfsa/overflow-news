@@ -9,6 +9,8 @@
     "build": "rm -rf ./build && npm run clean && npm run build:server && npm run copy:statics",
     "build:server": "babel src -d ./dist",
     "clean": "rm -rf ./dist",
+    "coverage:all": "jest -c=.coverage-jest.json --silent",
+    "coveralls": "npm run coverage:all && coveralls < coverage/lcov.info",
     "copy:statics": "cp ./src/views ./dist/views -Rf && cp ./src/assets ./dist/assets -Rf",
     "lint": "eslint src/",
     "start:worker": "node ./dist/worker.js",
@@ -33,7 +35,17 @@
     "transform": {
       "\\.js?$": "babel-jest"
     },
-    "clearMocks": true
+    "clearMocks": true,
+    "collectCoverage": true,
+    "coverageReporters": ["text", "lcov"],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": -10
+      }
+    }
   },
   "dependencies": {
     "bee-queue": "^1.2.2",
@@ -60,6 +72,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
+    "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
     "jest": "^22.4.3",
     "nodemon": "^1.17.2",
