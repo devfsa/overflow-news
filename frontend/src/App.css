@@ -1,0 +1,50 @@
+
+.navbar div:nth-child(2) {
+  text-align: right;
+}
+.navbar,
+.navbar h1 {
+  font-size: 14px;
+}
+ol {
+  font-size: 14px;
+}
+.posts li {
+  margin-bottom: 20px;
+  line-height: 20px;
+}
+.posts li .title {
+  font-size: 14px;
+}
+.posts li .about a {
+  color: #00bcd4;
+  border-bottom: 0px;
+}
+.posts li .about a:hover {
+  color: #ffffff;
+  background-color: #00bcd4;
+}
+.footer {
+  margin-bottom: 20px;
+}
+.footer .heart {
+  border-bottom: 0px;
+}
+.pagination,
+.pagination li {
+  outline: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+ul.pagination > li:after {
+  content: none;
+}
+.pagination li {
+  display: inline-block;
+  margin: 0 4px;
+}
+.pagination {
+  text-align: center;
+  max-width: 720px;
+}
