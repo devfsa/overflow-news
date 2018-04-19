@@ -18,28 +18,28 @@ app.use(cors());
 app.use(graphqlRouter);
 
 app.get('/feeds', async (req, res) => {
-    const feeds = await Feed.find({})
-        .limit(50)
-        .sort({ 'date': -1 });
-    res.render('feeds', { feeds });
+  const feeds = await Feed.find({})
+    .limit(50)
+    .sort({ 'date': -1 });
+  res.render('feeds', { feeds });
 });
 
 const listPosts = async (req, res) => {
-    const perPage = 30;
-    const { page = 1 } = req.params;
-    const offset = (perPage * page) - perPage;
+  const perPage = 30;
+  const { page = 1 } = req.params;
+  const offset = (perPage * page) - perPage;
 
-    const [ posts, count] = await Promise.all([
-        Post.find({})
-            .skip(offset)
-            .limit(perPage)
-            .sort({ 'date': -1 }),
-        Post.count({})
-    ]);
+  const [ posts, count] = await Promise.all([
+    Post.find({})
+      .skip(offset)
+      .limit(perPage)
+      .sort({ 'date': -1 }),
+    Post.count({})
+  ]);
 
-    const pages = Math.ceil(count / perPage);
+  const pages = Math.ceil(count / perPage);
 
-    res.render('index', { posts, count, perPage, pages, currentPage: page });
+  res.render('index', { posts, count, perPage, pages, currentPage: page });
 }
 
 app.get('/', listPosts);

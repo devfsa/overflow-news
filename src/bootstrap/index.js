@@ -1,2 +1,2 @@
-import './env'
-import './db'
+import './env';
+import './db';
