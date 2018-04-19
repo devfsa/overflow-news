@@ -46,9 +46,7 @@ queue.on('succeeded', (task, result) => {
     };
   });
 
-  Post.insertMany(posts, {
-    ordered: false
-  }, function(error) {
+  Post.insertMany(posts, {ordered: false}, function(error) {
     if (error) {
       console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found, ${posts.length - error.writeErrors.length} inserted`);
     } else {
