@@ -44,6 +44,7 @@ ul.pagination > li:after {
   display: inline-block;
   margin: 0 4px;
 }
+.loading-bar,
 .pagination {
   text-align: center;
   max-width: 720px;

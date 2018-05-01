@@ -1,0 +1,8 @@
+.loading {
+
+}
+
+.loading--current {
+  font-weight: bold;
+  color: #ff2e88;
+}
