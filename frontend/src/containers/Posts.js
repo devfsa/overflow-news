@@ -4,14 +4,14 @@ import gql from 'graphql-tag'
 import Pagination from '../components/Pagination'
 import Post from '../components/Post'
 import Layout from '../components/Layout'
-import Loading from './Loading'
+import Loading from '../components/Loading'
 import { withRouter } from "react-router-dom";
 const LINKS_PER_PAGE = 30
 
 let Posts = ({ match: { params: { page = 1 } }, data: { allPosts, _allPostsMeta, loading } }) => {
   return (
     <Layout>
-      {loading && <Loading size={20} />}
+      {loading && <Loading />}
       <ol className="posts">
         {!loading && allPosts.map((todo, i) => <Post key={todo.id} index={i + 1} {...todo} />)}
       </ol>

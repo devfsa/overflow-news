@@ -1,8 +1,43 @@
-.loading {
-
+.equals-loading--container {
+  width: 720px;
+  text-align: center;
 }
 
-.loading--current {
-  font-weight: bold;
+.equals-loading--bar {
+  width: 250px;
   color: #ff2e88;
+  font-weight: bold;
+  border: 1px solid #000;
+  position: relative;
+  display: inline-block;
+  height: 20px;
+}
+
+.equals-loading--bar::after {
+  content: '=';
+  display: block;
+  animation: ellipsis 3s infinite;
+}
+
+.equals-loading--bar::before {
+  content: '';
+  position: absolute;
+  background: #fff;
+  left: 3px;
+  right: 3px;
+  top: -3px;
+  bottom: -3px;
+  display: block;
+}
+
+@keyframes ellipsis {
+  0 {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(96.7%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
