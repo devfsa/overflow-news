@@ -16,8 +16,7 @@ const Post = ({ index, date, title, url, sourceName, sourceURL, categories = [] 
     </div>
     <div className="categories">
       <span>Categories: </span>
-      {!categories.length && <span>Uncategorized.</span>}
-      {categories.length > 0 && <span>{`${categories.join(', ')}.`}</span>}
+      <span>{categories.join(', ') || 'Uncategorized'}.</span>
     </div>
   </li>
 )
