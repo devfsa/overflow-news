@@ -37,7 +37,10 @@
     },
     "clearMocks": true,
     "collectCoverage": true,
-    "coverageReporters": ["text", "lcov"],
+    "coverageReporters": [
+      "text",
+      "lcov"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 80,
@@ -60,6 +63,7 @@
     "graphql-tools": "^2.23.1",
     "moment": "^2.21.0",
     "mongoose": "^5.0.9",
+    "raven": "^2.5.0",
     "request": "^2.83.0",
     "xml2js": "^0.4.19"
   },

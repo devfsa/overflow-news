@@ -8,12 +8,17 @@ import moment from 'moment';
 
 const app = express();
 const { PORT = 8080 } = process.env;
+const Raven = require('raven');
+
+Raven.config(process.env.SENTRY_DSN).install();
+app.locals.moment = moment;
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 app.set('cache', false);
 
-app.locals.moment = moment;
+// The request handler must be the first middleware on the app
+app.use(Raven.requestHandler());
 app.use(cors());
 app.use(graphqlRouter);
 
@@ -44,5 +49,8 @@ const listPosts = async (req, res) => {
 
 app.get('/', listPosts);
 app.get('/posts/:page', listPosts);
+
+// The error handler must be before any other error middleware
+app.use(Raven.errorHandler());
 
 app.listen(PORT);
