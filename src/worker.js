@@ -26,8 +26,6 @@ const queue = new Queue(process.env.CRAWL_QUEUE, {
 });
 
 queue.process(5, function(task, done) {
-  const job = require('./lib/job');
-
   job.crawlFeed(task['data']['rss'], function(error, posts) {
     if (error) {
       done(error);
