@@ -1,10 +1,15 @@
 import './bootstrap';
 import path from 'path';
+
 const Queue = require('bee-queue');
 const CronJob = require('cron').CronJob;
+const Raven = require('raven');
 
 const rss = require('./lib/rss');
 const job = require('./lib/job');
+
+// Start raven to catch exceptions
+Raven.config(process.env.SENTRY_DSN).install();
 
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
   const cron = new CronJob('00 59 * * * *', function() {
@@ -46,13 +51,17 @@ queue.on('succeeded', (task, result) => {
     };
   });
 
-  Post.insertMany(posts, {ordered: false}, function(error) {
-    if (error) {
-      console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found, ${posts.length - error.writeErrors.length} inserted`);
-    } else {
-      console.log('\x1b[32m[SUCCESS]\x1b[0m', `${posts.length} posts inserted`);
-    }
-  });
+  try {
+    Post.insertMany(posts, {ordered: false}, function(error) {
+      if (error) {
+        console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found, ${posts.length - error.writeErrors.length} inserted`);
+      } else {
+        console.log('\x1b[32m[SUCCESS]\x1b[0m', `${posts.length} posts inserted`);
+      }
+    });
+  } catch(e) {
+    Raven.captureException(e);
+  };
 });
 
 queue.on('retrying', (task, error) => {
