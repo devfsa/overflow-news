@@ -49,17 +49,13 @@ queue.on('succeeded', (task, result) => {
     };
   });
 
-  try {
-    Post.insertMany(posts, {ordered: false}, function(error) {
-      if (error) {
-        console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found, ${posts.length - error.writeErrors.length} inserted`);
-      } else {
-        console.log('\x1b[32m[SUCCESS]\x1b[0m', `${posts.length} posts inserted`);
-      }
-    });
-  } catch(e) {
-    Raven.captureException(e);
-  };
+  Post.insertMany(posts, {ordered: false}, function(error) {
+    if (error) {
+      console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found`);
+    } else {
+      console.log('\x1b[32m[SUCCESS]\x1b[0m', `${posts.length} posts inserted`);
+    }
+  });
 });
 
 queue.on('retrying', (task, error) => {
