@@ -15,7 +15,9 @@ services:
     depends_on:
       - mongo
       - redis
-    command: npm run build && npm run start:worker
+    command: npm run start:worker
+    env_file:
+      - .env
 
   server:
     build:
@@ -27,5 +29,7 @@ services:
       - 8080:8080
     depends_on:
       - mongo
-    command: npm run build && npm run start:server
+    command: npm run start:server
+    env_file:
+      - .env
 
