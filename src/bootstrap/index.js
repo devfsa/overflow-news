@@ -1,2 +1,0 @@
-import './env';
-import './db';

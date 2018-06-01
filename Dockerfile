@@ -1,7 +1,11 @@
 FROM node:carbon
 
-WORKDIR /usr/src/app
-COPY package.json .
+# Setup work application folder
+RUN mkdir /app
+WORKDIR /app
 
+# Copy dependencies list
+COPY package*.json ./
+
+# Install project dependencies
 RUN npm install
-EXPOSE 8080

@@ -6,30 +6,23 @@
 ## Screenshot
 ![First Version](assets/screenshot.png)
 
-## Requirements
-* [MongoDB](https://www.mongodb.com/)
-* [Redis](https://redis.io/)
-* [NodeJS](https://nodejs.org/)
+## Requirement
+* [Docker](https://www.docker.com/)
 
 ## Configure
-Create the `.env` file, containing the environment variable, and the fill the missing values:
+Create the `.env` file, containing the environment variables, and the fill the missing values:
 ```
 cp .env.example .env
 ```
 
-## Install
+## Run in development environment
 ```
-$ npm install
+$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
-## Run with docker
+## Run in production environment
 ```
 $ docker-compose up --build
-```
-
-## Run locally
-```
-$ npm start
 ```
 
 ## Open the browser
