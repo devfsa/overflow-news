@@ -7,14 +7,14 @@ function crawlFeed(URL, callback) {
 
   request(URL)
   .on('error', function (error) {
-    // console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
+    console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
     callback(error);
   })
   .on('response', function () {
     this.pipe(feedparser);
 
     feedparser.on('error', function (error) {
-      // console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
+      console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
     });
 
     feedparser.on('readable', function () {
@@ -34,7 +34,7 @@ function fetchLatestPosts() {
 
   Feed.find({}, function (error, feeds) {
     if (error) {
-      // console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
+      console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
     } else {
       const Queue = require('bee-queue');
       const queue = new Queue(process.env.CRAWL_QUEUE, {
@@ -47,7 +47,7 @@ function fetchLatestPosts() {
         queue.createJob(feed).save();
       });
 
-      // console.log('\x1b[34m[INFO]\x1b[0m', `${feeds.length} feeds to crawl`);
+      console.log('\x1b[34m[INFO]\x1b[0m', `${feeds.length} feeds to crawl`);
     }
   });
 }

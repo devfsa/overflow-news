@@ -51,25 +51,25 @@ queue.on('succeeded', (task, result) => {
 
   Post.insertMany(posts, {ordered: false}, function(error) {
     if (error) {
-      // console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found`);
+      console.log('\x1b[34m[INFO]\x1b[0m', `${posts.length} posts found`);
     } else {
-      // console.log('\x1b[32m[SUCCESS]\x1b[0m', `${posts.length} posts inserted`);
+      console.log('\x1b[32m[SUCCESS]\x1b[0m', `${posts.length} posts inserted`);
     }
   });
 });
 
 queue.on('retrying', (task, error) => {
-  // console.log(`Job ${task.id} failed with error ${error.message} but is being retried!`);
+  console.log(`Job ${task.id} failed with error ${error.message} but is being retried!`);
 });
 
 queue.on('error', (error) => {
-  // console.log(`A queue error happened: ${error.message}`);
+  console.log(`A queue error happened: ${error.message}`);
 });
 
 queue.on('failed', (task, error) => {
-  // console.log(`Job ${task.id} failed with error ${error.message}`);
+  console.log(`Job ${task.id} failed with error ${error.message}`);
 });
 
 queue.on('stalled', (taskId) => {
-  // console.log(`Job ${taskId} stalled and will be reprocessed`);
+  console.log(`Job ${taskId} stalled and will be reprocessed`);
 });

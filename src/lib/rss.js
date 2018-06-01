@@ -3,7 +3,7 @@ function load(RSSFile, callback) {
 
   fs.readFile(RSSFile, function (error, data) {
     if (error) {
-      // console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
+      console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
       callback(error);
     } else {
       const xml2js = require('xml2js');
@@ -22,9 +22,9 @@ function load(RSSFile, callback) {
         const Feed = require('../models/feed');
         Feed.insertMany(feeds, { ordered: false }, function (error) {
           if (error) {
-            // console.log('\x1b[34m[INFO]\x1b[0m', `${feeds.length} feeds found, ${feeds.length - error.writeErrors.length} inserted`);
+            console.log('\x1b[34m[INFO]\x1b[0m', `${feeds.length} feeds found, ${feeds.length - error.writeErrors.length} inserted`);
           } else {
-            // console.log('\x1b[32m[SUCCESS]\x1b[0m', `${feeds.length} feeds inserted`);
+            console.log('\x1b[32m[SUCCESS]\x1b[0m', `${feeds.length} feeds inserted`);
           }
           callback(null);
         });
