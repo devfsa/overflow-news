@@ -6,11 +6,8 @@
 ## Screenshot
 ![First Version](assets/screenshot.png)
 
-## Requirements
+## Requirement
 * [Docker](https://www.docker.com/)
-* [MongoDB](https://www.mongodb.com/)
-* [Redis](https://redis.io/)
-* [NodeJS](https://nodejs.org/)
 
 ## Configure
 Create the `.env` file, containing the environment variables, and the fill the missing values:
