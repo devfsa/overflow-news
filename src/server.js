@@ -1,15 +1,17 @@
-import './bootstrap';
-import express from 'express';
-import path from 'path';
-import cors from 'cors';
-import { Post, Feed } from './models';
-import graphqlRouter from './graphql';
-import moment from 'moment';
+const express = require('express');
+const path = require('path');
+const cors = require('cors');
+const moment = require('moment');
+const Raven = require('raven');
+const mongoose = require('mongoose');
+
+const Post = require('./models/post');
+const Feed = require('./models/feed');
 
 const app = express();
 const { PORT = 8080 } = process.env;
-const Raven = require('raven');
 
+mongoose.connect(process.env.MONGO_URI);
 Raven.config(process.env.SENTRY_DSN).install();
 app.locals.moment = moment;
 
@@ -20,7 +22,7 @@ app.set('cache', false);
 // The request handler must be the first middleware on the app
 app.use(Raven.requestHandler());
 app.use(cors());
-app.use(graphqlRouter);
+// app.use(graphqlRouter);
 
 app.get('/feeds', async (req, res) => {
   const feeds = await Feed.find({})

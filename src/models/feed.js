@@ -8,4 +8,3 @@ const FeedSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Feed', FeedSchema);
-module.exports.default = module.exports;
