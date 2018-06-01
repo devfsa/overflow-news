@@ -12,9 +12,14 @@ Raven.config(process.env.SENTRY_DSN).install();
 mongoose.connect(process.env.MONGO_URI);
 
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
-  const cron = new CronJob('00 59 * * * *', function() {
-    job.fetchLatestPosts();
-  }, null, true, 'America/Los_Angeles');
+  const cron = new CronJob({
+    cronTime: '0 * * * *',
+    onTick: function() {
+      job.fetchLatestPosts();
+    },
+    start: true,
+    timeZone: 'America/Los_Angeles'
+  });
 
   cron.start();
 });
