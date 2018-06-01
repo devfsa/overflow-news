@@ -1,15 +1,15 @@
-import './bootstrap';
-import path from 'path';
-
 const Queue = require('bee-queue');
 const CronJob = require('cron').CronJob;
 const Raven = require('raven');
+const mongoose = require('mongoose');
+const path = require('path');
 
 const rss = require('./lib/rss');
 const job = require('./lib/job');
 
 // Start raven to catch exceptions
 Raven.config(process.env.SENTRY_DSN).install();
+mongoose.connect(process.env.MONGO_URI);
 
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
   const cron = new CronJob('00 59 * * * *', function() {

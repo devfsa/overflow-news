@@ -11,8 +11,9 @@ const Feed = require('./models/feed');
 const app = express();
 const { PORT = 8080 } = process.env;
 
-mongoose.connect(process.env.MONGO_URI);
+// Start raven to catch exceptions
 Raven.config(process.env.SENTRY_DSN).install();
+mongoose.connect(process.env.MONGO_URI);
 app.locals.moment = moment;
 
 app.set('views', path.join(__dirname, './views'));
