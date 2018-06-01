@@ -36,4 +36,3 @@ services:
     command: npm run start:dev_server
     env_file:
       - .env
-
