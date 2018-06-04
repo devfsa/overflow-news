@@ -1,20 +1,21 @@
-function crawlFeed(URL, callback) {
-  const FeedParser = require('feedparser');
-  const request = require('request');
+const FeedParser = require('feedparser');
+const request = require('request');
+const Queue = require('bull');
+const Feed = require('../models/feed');
 
+function crawlFeed(URL, callback) {
   const feedparser = new FeedParser();
   let posts = [];
 
   request(URL)
   .on('error', function (error) {
-    console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
-    callback(error);
+    return callback(error);
   })
   .on('response', function () {
     this.pipe(feedparser);
 
     feedparser.on('error', function (error) {
-      console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
+      return callback(error);
     });
 
     feedparser.on('readable', function () {
@@ -29,26 +30,19 @@ function crawlFeed(URL, callback) {
   });
 }
 
-function fetchLatestPosts() {
-  const Feed = require('../models/feed');
-
+function fetchLatestPosts(callback) {
   Feed.find({}, function (error, feeds) {
     if (error) {
-      console.log('\x1b[31m[ERROR]\x1b[0m', error.message);
-    } else {
-      const Queue = require('bee-queue');
-      const queue = new Queue(process.env.CRAWL_QUEUE, {
-        redis: {
-          host: process.env.REDIS_URI
-        }
-      });
-
-      feeds.forEach(function (feed) {
-        queue.createJob(feed).save();
-      });
-
-      console.log('\x1b[34m[INFO]\x1b[0m', `${feeds.length} feeds to crawl`);
+      return callback(error);
     }
+
+    const queue = new Queue(process.env.CRAWL_QUEUE, process.env.REDIS_URI);
+
+    feeds.forEach(function (feed) {
+      queue.add(feed);
+    });
+
+    callback(null);
   });
 }
 
