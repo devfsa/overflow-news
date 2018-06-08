@@ -1,6 +1,6 @@
 const Queue = require('bull');
 const CronJob = require('cron').CronJob;
-const Raven = require('raven');
+const pino = require('pino')();
 const mongoose = require('mongoose');
 const path = require('path');
 
@@ -8,8 +8,6 @@ const rss = require('./lib/rss');
 const job = require('./lib/job');
 const Post = require('./models/post');
 
-// Start raven to catch exceptions
-Raven.config(process.env.SENTRY_DSN).install();
 mongoose.connect(process.env.MONGO_URI);
 
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
@@ -17,7 +15,7 @@ rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
     cronTime: '0 * * * *',
     onTick: function() {
       job.fetchLatestPosts(function(error) {
-        if (error) Raven.captureException(error);
+        if (error) pino.error(error);
       });
     },
     start: true,
@@ -32,7 +30,7 @@ const queue = new Queue(process.env.CRAWL_QUEUE, process.env.REDIS_URI);
 queue.process(5, function(task, done) {
   job.crawlFeed(task['data']['rss'], function(error, posts) {
     if (error) {
-      return Raven.captureException(error);
+      return pino.error(error);
     }
 
     done(null, posts);
@@ -54,7 +52,7 @@ queue.on('completed', (task, result) => {
     });
 
     Post.insertMany(posts, { ordered: false }, function(error) {
-      if (error) Raven.captureException(error);
+      if (error) pino.error(error);
     });
   }
 });
