@@ -49,7 +49,7 @@ queue.on('completed', (task, result) => {
     });
 
     Post.insertMany(posts, { ordered: false }, function(error) {
-      if (error && error['writeErrors'].length === 0) pino.error(error);
+      if ((error && error['writeErrors']) && error['writeErrors'].length === 0) pino.error(error);
     });
   }
 });
