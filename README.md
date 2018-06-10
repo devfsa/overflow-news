@@ -31,5 +31,5 @@ $ docker logs -f overflow-news_worker_1 | pino -l
 
 ## How to deploy?
 ```
-$ docker-compose -f docker-compose.prod.yml up --build
+$ docker-compose -f docker-compose.prod.yml up -d --build
 ```
