@@ -11,13 +11,19 @@ const queue = new Queue(process.env.CRAWL_QUEUE, process.env.REDIS_URI);
 
 mongoose.connect(process.env.MONGO_URI);
 
-// Application bootstrap
+// Application bootstrap. Run this script always on start
 rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
-  const cron = new CronJob('0 * * * *', function() {
-    job.fetchLatestPosts(function(error) {
-      if (error) pino.error(error);
-    });
-  }, null, true, 'America/Los_Angeles');
+  const cron = new CronJob({
+    cronTime: '0 * * * *',
+    onTick: function() {
+      job.fetchLatestPosts(function(error) {
+        if (error) pino.error(error);
+      });
+    },
+    start: false,
+    timeZone: 'America/Los_Angeles',
+    runOnInit: true
+  });
 
   cron.start();
 });
