@@ -23,7 +23,7 @@ rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
 });
 
 // Start to process tasks using concurrency
-queue.process(10, function(task, done) {
+queue.process(5, function(task, done) {
   job.crawlFeed(task['data']['rss'], function(error, posts) {
     if (error) {
       return pino.error(error);
