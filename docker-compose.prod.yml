@@ -1,6 +1,34 @@
 version: '2'
 services:
+  redis:
+    image: redis:4-alpine
+
+  mongo:
+    image: mongo:3.4.10
+
   worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src/
+    depends_on:
+      - mongo
+      - redis
     command: npm run start:worker
+    env_file:
+      - .env
+
   server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src/
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
     command: npm run start:server
+    env_file:
+      - .env
