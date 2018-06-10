@@ -2,9 +2,13 @@ version: '2'
 services:
   redis:
     image: redis:4-alpine
+    ports:
+      - 6379:6379
 
   mongo:
     image: mongo:3.4.10
+    ports:
+      - 27017:27017
 
   worker:
     build:
@@ -15,7 +19,7 @@ services:
     depends_on:
       - mongo
       - redis
-    command: npm run start:worker
+    command: npm run start:dev_worker
     env_file:
       - .env
 
@@ -29,6 +33,6 @@ services:
       - 8080:8080
     depends_on:
       - mongo
-    command: npm run start:server
+    command: npm run start:dev_server
     env_file:
       - .env

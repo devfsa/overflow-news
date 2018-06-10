@@ -1,0 +1,6 @@
+version: '2'
+services:
+  worker:
+    command: npm run start:worker
+  server:
+    command: npm run start:server

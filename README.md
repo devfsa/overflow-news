@@ -6,26 +6,30 @@
 ## Screenshot
 ![First Version](assets/screenshot.png)
 
-## Requirement
+## Requirements
 * [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/)
+* [Pino](http://getpino.io)
 
-## Configure
+## How to configure?
 Create the `.env` file, containing the environment variables, and the fill the missing values:
 ```
 cp .env.example .env
 ```
 
-## Run in development environment
-```
-$ docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
-```
-
-## Run in production environment
+## How to run?
+Run this command below and open the following URL in the browser: http://localhost:8080
 ```
 $ docker-compose up --build
 ```
 
-## Open the browser
+## Prettify log messages
+Below `overflow-news_worker_1` is a container name example.
 ```
-http://localhost:8080
+$ docker logs -f overflow-news_worker_1 | pino -l
+```
+
+## How to deploy?
+```
+$ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
 ```
