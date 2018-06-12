@@ -1,4 +1,4 @@
-const Queue = require('bull');
+const kue = require('kue');
 const CronJob = require('cron').CronJob;
 const pino = require('pino')();
 const mongoose = require('mongoose');
@@ -7,7 +7,7 @@ const path = require('path');
 const rss = require('./lib/rss');
 const job = require('./lib/job');
 const Post = require('./models/post');
-const queue = new Queue(process.env.CRAWL_QUEUE, process.env.REDIS_URI);
+const queue = kue.createQueue({ redis: process.env.REDIS_URI });
 
 mongoose.connect(process.env.MONGO_URI);
 
@@ -29,7 +29,7 @@ rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
 });
 
 // Start to process tasks using concurrency
-queue.process(5, function(task, done) {
+queue.process(process.env.CRAWL_QUEUE, 20, function(task, done) {
   job.crawlFeed(task['data']['rss'], function(error, result) {
     if (error) {
       return pino.error(error);
@@ -58,17 +58,18 @@ queue.process(5, function(task, done) {
 });
 
 // Remove completed jobs from the queue
-queue.on('completed', function(task, result) {
-  pino.info(`Job ${task.id} is completed and removed`);
-  task.remove();
-});
+queue.on('job complete', function(id, result) {
+  kue.Job.get(id, function(error, task) {
+    if (error) {
+      pino.error(error);
+    }
 
-queue.on('failed', function(task, error) {
-  pino.error(error);
-  task.remove();
-});
+    task.remove(function(error) {
+      if (error) {
+        pino.error(error);
+      }
 
-queue.on('stalled', function(task, error) {
-  pino.info(`Job ${task.id} removed because is stalled`);
-  task.remove();
+      pino.info(`Job ${task.id} is completed and removed`);
+    });
+  });
 });

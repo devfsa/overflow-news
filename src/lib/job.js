@@ -1,6 +1,6 @@
 const FeedParser = require('feedparser');
 const request = require('request');
-const Queue = require('bull');
+const kue = require('kue');
 const Feed = require('../models/feed');
 
 function crawlFeed(URL, callback) {
@@ -36,10 +36,10 @@ function fetchLatestPosts(callback) {
       return callback(error);
     }
 
-    const queue = new Queue(process.env.CRAWL_QUEUE, process.env.REDIS_URI);
+    const queue = kue.createQueue({ redis: process.env.REDIS_URI });
 
     feeds.forEach(function (feed) {
-      queue.add(feed);
+      queue.create(process.env.CRAWL_QUEUE, feed).save();
     });
 
     callback(null);
