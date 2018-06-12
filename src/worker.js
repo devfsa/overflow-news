@@ -30,18 +30,11 @@ rss.load(path.join(__dirname, process.env.FEEDS_FILE), function() {
 
 // Start to process tasks using concurrency
 queue.process(5, function(task, done) {
-  job.crawlFeed(task['data']['rss'], function(error, posts) {
+  job.crawlFeed(task['data']['rss'], function(error, result) {
     if (error) {
       return pino.error(error);
     }
 
-    done(null, posts);
-  });
-});
-
-// On task completed save result into DB
-queue.on('completed', (task, result) => {
-  if (result) {
     const posts = result.map(function(post) {
       return {
         sourceName: post.meta.title,
@@ -55,7 +48,11 @@ queue.on('completed', (task, result) => {
     });
 
     Post.insertMany(posts, { ordered: false }, function(error) {
-      if ((error && error['writeErrors']) && error['writeErrors'].length === 0) pino.error(error);
+      if ((error && error['writeErrors']) && error['writeErrors'].length === 0) {
+        pino.error(error);
+      }
+
+      done(null);
     });
-  }
+  });
 });
