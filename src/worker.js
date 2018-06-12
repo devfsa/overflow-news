@@ -56,3 +56,20 @@ queue.process(5, function(task, done) {
     });
   });
 });
+
+// Remove completed jobs from the queue
+queue.on('completed', function(task, result) {
+  pino.info(`Job ${task.id} is completed and removed`);
+  task.remove();
+});
+
+queue.on('failed', function(task, error) {
+  pino.error(error);
+  task.remove();
+});
+
+queue.on('stalled', function(task, error) {
+  pino.info(`Job ${task.id} removed because is stalled`);
+  pino.error(error);
+  task.remove();
+});
