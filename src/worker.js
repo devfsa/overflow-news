@@ -70,6 +70,5 @@ queue.on('failed', function(task, error) {
 
 queue.on('stalled', function(task, error) {
   pino.info(`Job ${task.id} removed because is stalled`);
-  pino.error(error);
   task.remove();
 });
