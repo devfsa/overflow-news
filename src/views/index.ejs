@@ -61,7 +61,7 @@
       counter-reset: a <%= (perPage * (currentPage - 1)) %>;
     }
     .posts li {
-      padding-left: <%= Math.ceil(((perPage * (currentPage - 1)) + perPage + 1) / 100) * 8 + 20 %>px
+      padding-left: <%= 20 + (Math.floor(Math.log10(perPage * (currentPage - 1) + perPage)) * 10) %>px
     }
     .posts li:after {
       left: 0 !important;
