@@ -58,7 +58,7 @@ queue.process(process.env.CRAWL_QUEUE, 20, function(task, done) {
 });
 
 // Remove completed jobs from the queue
-queue.on('job complete', function(id, result) {
+queue.on('job complete', function(id) {
   kue.Job.get(id, function(error, task) {
     if (error) {
       pino.error(error);
@@ -73,3 +73,6 @@ queue.on('job complete', function(id, result) {
     });
   });
 });
+
+// Stuck jobs clean up
+queue.watchStuckJobs();
